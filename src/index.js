@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const initialState = "hi";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class App extends React.Component {
+  state = {
+    text: initialState,
+  };
+  handleChange = (e) => {
+    this.setState({
+      text: e.target.value,
+    });
+  };
+  render() {
+    return (
+      <div>
+        <h1 className="text-center">convert your markdown</h1>
+
+        <div className="row">
+          <div className="col-6">
+            <h6>Enter your markdown here</h6>
+            <textarea
+              id="editor"
+              className="form-control"
+              value={this.state.text}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className="col-6" id="preview">
+            <h6>Result is here</h6>
+            <div className="preview">{this.state.text}</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("app"));
