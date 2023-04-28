@@ -9,3 +9,6 @@ textarea,
 .preview {
   min-height: 7rem;
 }
+.preview img {
+  max-width: 30%;
+}
